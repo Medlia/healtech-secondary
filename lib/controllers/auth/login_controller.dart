@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:healtech/core/exceptions/auth_exception.dart';
 import 'package:healtech/core/routes/routes.dart';
+import 'package:healtech/models/auth/user_auth_model.dart';
 
 class LoginController extends GetxController {
   late final TextEditingController email;
@@ -10,6 +13,8 @@ class LoginController extends GetxController {
   var isEmailFocused = false.obs;
   var isPasswordFocused = false.obs;
   var isChecked = false.obs;
+
+  final FirebaseAuth _firebase = FirebaseAuth.instance;
 
   @override
   void onInit() {
@@ -36,8 +41,23 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
-  void login() {
-    Get.toNamed(navigationRoute);
+  Future<void> login(UserAuthModel user) async {
+    try {
+      await _firebase.signInWithEmailAndPassword(
+        email: user.email,
+        password: user.password,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        throw UserNotFoundException();
+      } else if (e.code == 'wrong-password') {
+        throw WrongPasswordException();
+      } else {
+        throw GenericException();
+      }
+    } catch (e) {
+      throw GenericException();
+    }
   }
 
   void checked() {

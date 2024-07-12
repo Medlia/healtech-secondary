@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:healtech/core/exceptions/auth_exception.dart';
 import 'package:healtech/core/routes/routes.dart';
+import 'package:healtech/models/auth/user_auth_model.dart';
 
 class SignupController extends GetxController {
   late final TextEditingController email;
@@ -10,6 +13,8 @@ class SignupController extends GetxController {
   var isEmailFocused = false.obs;
   var isPasswordFocused = false.obs;
   var isChecked = false.obs;
+
+  final FirebaseAuth _firebase = FirebaseAuth.instance;
 
   @override
   void onInit() {
@@ -36,8 +41,25 @@ class SignupController extends GetxController {
     super.onClose();
   }
 
-  void signup() {
-    Get.toNamed(navigationRoute);
+  Future<void> signup(UserAuthModel user) async {
+    try {
+      await _firebase.createUserWithEmailAndPassword(
+        email: user.email,
+        password: user.password,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-email') {
+        throw InvalidEmailException();
+      } else if (e.code == 'weak-password') {
+        throw WeakPasswordException();
+      } else if (e.code == 'email-already-in-use') {
+        throw EmailAlreadyInUseException();
+      } else {
+        throw GenericException();
+      }
+    } catch (e) {
+      throw GenericException();
+    }
   }
 
   void checked() {

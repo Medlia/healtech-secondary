@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:healtech/controllers/auth/login_controller.dart';
+import 'package:healtech/core/exceptions/auth_exception.dart';
+import 'package:healtech/core/routes/routes.dart';
+import 'package:healtech/models/auth/user_auth_model.dart';
 import 'package:healtech/pages/auth/widgets/auth_button.dart';
 
 class Login extends StatefulWidget {
@@ -150,7 +153,38 @@ class _LoginState extends State<Login> {
               ),
               const SizedBox(height: 40.0),
               FilledButton(
-                onPressed: controller.login,
+                onPressed: () async {
+                  try {
+                    await controller.login(
+                      UserAuthModel(
+                        email: controller.email.text,
+                        password: controller.password.text,
+                      ),
+                    );
+                    Get.toNamed(navigationRoute);
+                  } on UserNotFoundException {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        title: "User not found",
+                        message: "Sign up to create an account",
+                      ),
+                    );
+                  } on WrongPasswordException {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        title: "Wrong Password",
+                        message: "Enter the right password to log in",
+                      ),
+                    );
+                  } on GenericException {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        title: "An exception ocurred",
+                        message: "Try logging in again",
+                      ),
+                    );
+                  }
+                },
                 style: FilledButton.styleFrom(
                   minimumSize: const Size(double.infinity, 60.0),
                   backgroundColor: Colors.black,

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "978493976951",
+    "project_id": "healtech-secondary",
+    "storage_bucket": "healtech-secondary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978493976951:android:1ad581a54cdb323f643172",
+        "android_client_info": {
+          "package_name": "com.healtech_secondary.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJbTa9ChT23xSKOBywFweDYX65O1Mu2Kc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

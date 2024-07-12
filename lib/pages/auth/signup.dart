@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:healtech/controllers/auth/signup_controller.dart';
+import 'package:healtech/core/exceptions/auth_exception.dart';
+import 'package:healtech/core/routes/routes.dart';
+import 'package:healtech/models/auth/user_auth_model.dart';
 import 'package:healtech/pages/auth/widgets/auth_button.dart';
 
 class Signup extends StatefulWidget {
@@ -84,6 +87,7 @@ class _SignupState extends State<Signup> {
                 () => TextFormField(
                   controller: controller.password,
                   focusNode: controller.passwordFocusNode,
+                  obscureText: true,
                   style: const TextStyle(
                     fontSize: 16.0,
                     color: Colors.black,
@@ -150,7 +154,45 @@ class _SignupState extends State<Signup> {
               ),
               const SizedBox(height: 40.0),
               FilledButton(
-                onPressed: controller.signup,
+                onPressed: () async {
+                  try {
+                    await controller.signup(
+                      UserAuthModel(
+                        email: controller.email.text,
+                        password: controller.password.text,
+                      ),
+                    );
+                    Get.toNamed(navigationRoute);
+                  } on InvalidEmailException {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        title: "Invalid email",
+                        message: "Enter a valid email address",
+                      ),
+                    );
+                  } on WeakPasswordException {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        title: "Weak password",
+                        message: "Enter a valid password to sign up",
+                      ),
+                    );
+                  } on EmailAlreadyInUseException {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        title: "Email already in use",
+                        message: "Proceed to log in using this email",
+                      ),
+                    );
+                  } on GenericException {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        title: "An exception ocurred",
+                        message: "Try logging in again",
+                      ),
+                    );
+                  }
+                },
                 style: FilledButton.styleFrom(
                   minimumSize: const Size(double.infinity, 60.0),
                   backgroundColor: Colors.black,
