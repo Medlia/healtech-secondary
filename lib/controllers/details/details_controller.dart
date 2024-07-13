@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:healtech/core/routes/routes.dart';
@@ -221,6 +222,7 @@ class DetailsController extends GetxController {
   }
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   Future<void> saveDetails() async {
     DateTime parsedDate = DateFormat('dd/MM/yyyy').parse(dateOfBirth.text);
@@ -240,7 +242,7 @@ class DetailsController extends GetxController {
     try {
       await _firestore
           .collection('userDetails')
-          .doc(userDetails.fullName)
+          .doc(_firebaseAuth.currentUser!.uid)
           .set(userDetails.toJson());
       Get.toNamed(navigationRoute);
     } catch (_) {

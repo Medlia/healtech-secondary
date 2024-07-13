@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserDetails {
   String fullName;
   DateTime dateOfBirth;
@@ -22,6 +24,36 @@ class UserDetails {
     required this.dietaryPreferences,
     required this.exerciseFrequency,
   });
+
+  factory UserDetails.fromMap(Map<String, dynamic> map) {
+    return UserDetails(
+      fullName: map['fullName'],
+      dateOfBirth: (map['dateOfBirth'] as Timestamp).toDate(),
+      gender: map['gender'],
+      bloodType: map['bloodType'],
+      height: map['height'],
+      weight: map['weight'],
+      targetWeight: map['targetWeight'],
+      fitnessGoals: map['fitnessGoals'],
+      dietaryPreferences: map['dietaryPreferences'],
+      exerciseFrequency: map['exerciseFrequency'],
+    );
+  }
+
+  factory UserDetails.fromJson(Map<String, dynamic> map) {
+    return UserDetails(
+      fullName: map['fullName'],
+      dateOfBirth: (map['dateOfBirth'] as Timestamp).toDate(),
+      gender: map['gender'],
+      bloodType: map['bloodType'],
+      height: map['height'],
+      weight: map['weight'],
+      targetWeight: map['targetWeight'],
+      fitnessGoals: map['fitnessGoals'],
+      dietaryPreferences: map['dietaryPreferences'],
+      exerciseFrequency: map['exerciseFrequency'],
+    );
+  }
 
   Map<String, dynamic> toJson() {
     return {
