@@ -32,12 +32,12 @@ class LoginController extends GetxController {
 
   @override
   void onClose() {
-    email.dispose();
-    password.dispose();
     emailFocusNode.removeListener(_onFocusChange);
     passwordFocusNode.removeListener(_onFocusChange);
     emailFocusNode.dispose();
     passwordFocusNode.dispose();
+    email.dispose();
+    password.dispose();
     super.onClose();
   }
 
@@ -62,6 +62,10 @@ class LoginController extends GetxController {
 
   void checked() {
     isChecked.value = !isChecked.value;
+  }
+
+  void navigateToResetPassword() {
+    Get.toNamed(resetPasswordRoute);
   }
 
   void navigateToSignUp() {

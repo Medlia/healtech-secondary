@@ -32,12 +32,12 @@ class SignupController extends GetxController {
 
   @override
   void onClose() {
-    email.dispose();
-    password.dispose();
     emailFocusNode.removeListener(_onFocusChange);
     passwordFocusNode.removeListener(_onFocusChange);
     emailFocusNode.dispose();
     passwordFocusNode.dispose();
+    email.dispose();
+    password.dispose();
     super.onClose();
   }
 
@@ -47,6 +47,12 @@ class SignupController extends GetxController {
         email: user.email,
         password: user.password,
       );
+      if (_firebase.currentUser!.emailVerified) {
+        Get.toNamed(navigationRoute);
+      } else {
+        await _firebase.currentUser!.sendEmailVerification();
+        Get.toNamed(emailVerifyRoute);
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-email') {
         throw InvalidEmailException();
