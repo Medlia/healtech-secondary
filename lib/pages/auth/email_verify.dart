@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:healtech/controllers/auth/email_verify_controller.dart';
+import 'package:healtech/core/routes/routes.dart';
 import 'package:healtech/pages/auth/widgets/custom_text_field.dart';
 
 class EmailVerify extends StatefulWidget {
@@ -11,7 +12,7 @@ class EmailVerify extends StatefulWidget {
 }
 
 class _EmailVerifyState extends State<EmailVerify> {
-  final controller = Get.put(EmailVerifyController());
+  final controller = Get.put(being());
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +62,7 @@ class _EmailVerifyState extends State<EmailVerify> {
               CustomTextField(
                 controller: controller.email,
                 focusNode: controller.emailFocusNode,
+                keyboardType: TextInputType.emailAddress,
                 isPassword: false,
                 isFocused: controller.isEmailFocused,
               ),
@@ -68,7 +70,9 @@ class _EmailVerifyState extends State<EmailVerify> {
               FilledButton(
                 onPressed: () async {
                   controller.refreshUser();
-                  if (controller.email.text.isNotEmpty) {
+                  if (controller.emailVerified()) {
+                    Get.toNamed(detailsRoute);
+                  } else {
                     controller.sendEmailVerification();
                   }
                 },

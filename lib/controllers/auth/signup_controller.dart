@@ -48,7 +48,7 @@ class SignupController extends GetxController {
         password: user.password,
       );
       if (_firebase.currentUser!.emailVerified) {
-        Get.toNamed(navigationRoute);
+        Get.toNamed(detailsRoute);
       } else {
         await _firebase.currentUser!.sendEmailVerification();
         Get.toNamed(emailVerifyRoute);

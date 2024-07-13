@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:healtech/core/routes/routes.dart';
 
-class EmailVerifyController extends GetxController {
+class being extends GetxController {
   late final TextEditingController email;
   final emailFocusNode = FocusNode();
   var isEmailFocused = false.obs;
@@ -32,10 +32,16 @@ class EmailVerifyController extends GetxController {
     await _firebase.currentUser!.reload();
   }
 
+  bool emailVerified() {
+    _firebase.currentUser!.reload();
+    return _firebase.currentUser!.emailVerified;
+  }
+
+// TODO: Correct the logic. The email is beign sent twice.
   void sendEmailVerification() async {
     _firebase.currentUser!.reload();
     if (_firebase.currentUser!.emailVerified) {
-      Get.toNamed(navigationRoute);
+      Get.toNamed(detailsRoute);
     } else {
       await _firebase.currentUser!.sendEmailVerification();
     }

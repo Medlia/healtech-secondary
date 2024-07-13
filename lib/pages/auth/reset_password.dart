@@ -60,6 +60,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               CustomTextField(
                 controller: controller.email,
                 focusNode: controller.emailFocusNode,
+                keyboardType: TextInputType.emailAddress,
                 isPassword: false,
                 isFocused: controller.isEmailFocused,
               ),

@@ -6,14 +6,18 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.focusNode,
+    required this.keyboardType,
     required this.isPassword,
     required this.isFocused,
+    this.suffixIcon,
   });
 
   final TextEditingController controller;
   final FocusNode focusNode;
+  final TextInputType keyboardType;
   final bool isPassword;
   final RxBool isFocused;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +25,7 @@ class CustomTextField extends StatelessWidget {
       () => TextFormField(
         controller: controller,
         focusNode: focusNode,
+        keyboardType: keyboardType,
         obscureText: isPassword,
         validator: (value) {
           if (value == null || value.isEmpty) {
@@ -39,6 +44,7 @@ class CustomTextField extends StatelessWidget {
         ),
         cursorColor: Colors.black,
         decoration: InputDecoration(
+          suffixIcon: suffixIcon,
           filled: true,
           fillColor: isFocused.value ? Colors.white : const Color(0xffdbdcdc),
           enabledBorder: OutlineInputBorder(

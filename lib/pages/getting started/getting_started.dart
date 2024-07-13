@@ -11,9 +11,10 @@ class GettingStarted extends StatefulWidget {
 }
 
 class _GettingStartedState extends State<GettingStarted> {
+  final controller = Get.put(GettingStartedController());
+  
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(GettingStartedController());
     return Scaffold(
       body: SafeArea(
         child: Padding(

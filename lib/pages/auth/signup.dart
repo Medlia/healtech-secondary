@@ -50,6 +50,7 @@ class _SignupState extends State<Signup> {
               CustomTextField(
                 controller: controller.email,
                 focusNode: controller.emailFocusNode,
+                keyboardType: TextInputType.emailAddress,
                 isPassword: false,
                 isFocused: controller.isEmailFocused,
               ),
@@ -66,6 +67,7 @@ class _SignupState extends State<Signup> {
               CustomTextField(
                 controller: controller.password,
                 focusNode: controller.passwordFocusNode,
+                keyboardType: TextInputType.text,
                 isPassword: true,
                 isFocused: controller.isPasswordFocused,
               ),
