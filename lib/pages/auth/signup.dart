@@ -188,7 +188,71 @@ class _SignupState extends State<Signup> {
               ),
               const SizedBox(height: 30.0),
               authButton(
-                controller.googleSignUp,
+                () async {
+                  try {
+                    await controller.googleSignUp();
+                  } on AccountExistsWithDifferentCredentialException {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        title: "Account exists with different credential",
+                        message: "Proceed to log in using new credential",
+                        duration: Duration(seconds: 20),
+                        isDismissible: true,
+                        dismissDirection: DismissDirection.down,
+                      ),
+                    );
+                  } on InvalidCredentialException {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        title: "Invalid credential",
+                        message: "Sign up with valid credential",
+                        duration: Duration(seconds: 20),
+                        isDismissible: true,
+                        dismissDirection: DismissDirection.down,
+                      ),
+                    );
+                  } on OperationNotAllowedException {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        title: "Operation not allowed",
+                        message: "Try signing up again",
+                        duration: Duration(seconds: 20),
+                        isDismissible: true,
+                        dismissDirection: DismissDirection.down,
+                      ),
+                    );
+                  } on UserNotFoundException {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        title: "User not found",
+                        message: "Sign up to create an account",
+                        duration: Duration(seconds: 20),
+                        isDismissible: true,
+                        dismissDirection: DismissDirection.down,
+                      ),
+                    );
+                  } on WrongPasswordException {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        title: "Wrong Password",
+                        message: "Enter the right password to log in",
+                        duration: Duration(seconds: 20),
+                        isDismissible: true,
+                        dismissDirection: DismissDirection.down,
+                      ),
+                    );
+                  } on GenericException {
+                    Get.showSnackbar(
+                      const GetSnackBar(
+                        title: "An exception ocurred",
+                        message: "Try signing up again",
+                        duration: Duration(seconds: 20),
+                        isDismissible: true,
+                        dismissDirection: DismissDirection.down,
+                      ),
+                    );
+                  }
+                },
                 FontAwesomeIcons.google,
                 32.0,
                 "Sign up with Google",

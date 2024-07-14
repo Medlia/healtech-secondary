@@ -12,7 +12,20 @@
           "package_name": "com.healtech_secondary.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "978493976951-trmb5iaqjga5porvf02e6tlmiq4t2ham.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.healtech_secondary.app",
+            "certificate_hash": "9ce6c8ebeea3b1e0e007c47fe42301ef9311cb3e"
+          }
+        },
+        {
+          "client_id": "978493976951-kfujs90n2sc3mu9rjgrja4k1c6rc2nep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAJbTa9ChT23xSKOBywFweDYX65O1Mu2Kc"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "978493976951-kfujs90n2sc3mu9rjgrja4k1c6rc2nep.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "978493976951-fgu12rgmg3eth6df1nklst4lito2b5v8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.healtech"
+              }
+            }
+          ]
         }
       }
     }

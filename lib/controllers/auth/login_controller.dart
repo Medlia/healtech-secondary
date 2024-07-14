@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:healtech/core/exceptions/auth_exception.dart';
 import 'package:healtech/core/routes/routes.dart';
 import 'package:healtech/models/auth/user_auth_model.dart';
@@ -41,6 +42,11 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
+  Future<bool> currentUser() async {
+    final user = await GoogleSignIn().isSignedIn();
+    return user;
+  }
+
   Future<void> login(UserAuthModel user) async {
     try {
       await _firebase.signInWithEmailAndPassword(
@@ -72,6 +78,42 @@ class LoginController extends GetxController {
     Get.toNamed(signUpRoute);
   }
 
-  void googleLogIn() {}
+  Future<UserCredential> googleLogIn() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        throw GenericException();
+      }
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      UserCredential userCredential =
+          await _firebase.signInWithCredential(credential);
+      if (userCredential.user != null) {
+        Get.toNamed(detailsRoute);
+      }
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'account-exists-with-different-credential') {
+        throw AccountExistsWithDifferentCredentialException();
+      } else if (e.code == 'invalid-credential') {
+        throw InvalidCredentialException();
+      } else if (e.code == 'operation-not-allowed') {
+        throw OperationNotAllowedException();
+      } else if (e.code == 'user-not-found') {
+        throw UserNotFoundException();
+      } else if (e.code == 'wrong-password') {
+        throw WrongPasswordException();
+      } else {
+        throw GenericException();
+      }
+    } catch (e) {
+      throw GenericException();
+    }
+  }
+
   void appleLogIn() {}
 }
