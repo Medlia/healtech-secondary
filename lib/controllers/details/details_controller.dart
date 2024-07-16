@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 class DetailsController extends GetxController {
   late final PageController pageController;
   var currentIndex = 0.obs;
+
   List<String> genderOptions = ['Male', 'Female', 'Other'];
   var selectedGender = ''.obs;
   RxList<String> selectedFitnessGoals = RxList<String>();

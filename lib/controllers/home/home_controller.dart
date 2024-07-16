@@ -7,7 +7,10 @@ class HomeController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  Future<UserDetails?> fetchUserDetails() async {
+  Rx<UserDetails?> userDetails = Rx<UserDetails?>(null);
+
+
+  Future<void> fetchUserDetails() async {
     try {
       DocumentSnapshot<Map<String, dynamic>> snapshot = await _firestore
           .collection('userDetails')
@@ -15,13 +18,13 @@ class HomeController extends GetxController {
           .get();
 
       if (snapshot.exists) {
-        return UserDetails.fromJson(snapshot.data()!);
+        userDetails.value = UserDetails.fromJson(snapshot.data()!);
       } else {
-        return null;
+        userDetails.value = null;
       }
     } catch (e) {
       print(e);
-      return null;
+      userDetails.value = null;
     }
   }
 
@@ -48,5 +51,11 @@ class HomeController extends GetxController {
     double heightM = cmHeight / 100;
     double bmi = kgWeight / (heightM * heightM);
     return bmi;
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchUserDetails();
   }
 }

@@ -19,10 +19,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<UserDetails?>(
-        future: controller.fetchUserDetails(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
+      body: Obx(
+        () {
+          if (controller.userDetails.value == null) {
             return Center(
               child: CircularProgressIndicator(
                 color: Colors.black.withOpacity(0.8),
@@ -30,7 +29,7 @@ class _HomeState extends State<Home> {
             );
           }
 
-          UserDetails userDetails = snapshot.data!;
+          UserDetails userDetails = controller.userDetails.value!;
           double kgWeight;
           double targetKgWeight;
           double mHeight;
@@ -82,6 +81,15 @@ class _HomeState extends State<Home> {
                       const Spacer(),
                       BMIChart(bmi: targetBmi),
                     ],
+                  ),
+                  const SizedBox(height: 20.0),
+                  const Text(
+                    "Number of Steps",
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                    ),
                   ),
                 ],
               ),
