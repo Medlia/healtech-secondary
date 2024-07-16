@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:healtech/controllers/getting%20started/getting_started_controller.dart';
 import 'package:healtech/pages/getting%20started/content/content.dart';
+import 'package:healtech/pages/getting%20started/widgets/build_dot_indicator.dart';
+import 'package:healtech/pages/getting%20started/widgets/build_page.dart';
 
 class GettingStarted extends StatefulWidget {
   const GettingStarted({super.key});
@@ -12,7 +14,7 @@ class GettingStarted extends StatefulWidget {
 
 class _GettingStartedState extends State<GettingStarted> {
   final controller = Get.put(GettingStartedController());
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +30,7 @@ class _GettingStartedState extends State<GettingStarted> {
                   itemCount: images.length,
                   onPageChanged: controller.onPageChanged,
                   itemBuilder: (context, index) {
-                    return _buildPage(index);
+                    return buildPage(index);
                   },
                 ),
               ),
@@ -38,7 +40,7 @@ class _GettingStartedState extends State<GettingStarted> {
                   images.length,
                   (index) {
                     return Obx(
-                      () => _buildDotIndicator(
+                      () => buildDotIndicator(
                           index, controller.currentIndex.value),
                     );
                   },
@@ -69,58 +71,6 @@ class _GettingStartedState extends State<GettingStarted> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Padding _buildPage(int index) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            images[index],
-            height: 250.0,
-            width: 250.0,
-          ),
-          const SizedBox(height: 30.0),
-          Text(
-            heading[index],
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 30.0,
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
-            ),
-          ),
-          const SizedBox(height: 20.0),
-          Text(
-            text[index],
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16.0,
-              color: Colors.black.withOpacity(0.8),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container _buildDotIndicator(int index, int currentIndex) {
-    return Container(
-      height: 10.0,
-      width: currentIndex == index ? 26.0 : 10.0,
-      margin: const EdgeInsets.only(right: 10.0),
-      decoration: BoxDecoration(
-        color: currentIndex == index ? Colors.black : Colors.white,
-        shape: currentIndex == index ? BoxShape.rectangle : BoxShape.circle,
-        borderRadius:
-            currentIndex == index ? BorderRadius.circular(50.0) : null,
-        border: Border.all(
-          color: Colors.black.withOpacity(0.8),
         ),
       ),
     );
