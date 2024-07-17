@@ -247,7 +247,7 @@ class DetailsController extends GetxController {
           .set(userDetails.toJson());
       Get.toNamed(navigationRoute);
     } catch (_) {
-      print(_);
+      rethrow;
     }
   }
 }

@@ -12,7 +12,7 @@ class EmailVerify extends StatefulWidget {
 }
 
 class _EmailVerifyState extends State<EmailVerify> {
-  final controller = Get.put(being());
+  final controller = Get.put(EmailVerifyController());
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class _EmailVerifyState extends State<EmailVerify> {
               ),
               const SizedBox(height: 12.0),
               Text(
-                "Enter your email address if you did not receive the verififcation link.",
+                "Enter your email address if you did not receive the verification link.",
                 style: TextStyle(
                   fontSize: 14.0,
                   fontWeight: FontWeight.w500,

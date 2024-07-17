@@ -23,7 +23,6 @@ class HomeController extends GetxController {
         userDetails.value = null;
       }
     } catch (e) {
-      print(e);
       userDetails.value = null;
     }
   }
