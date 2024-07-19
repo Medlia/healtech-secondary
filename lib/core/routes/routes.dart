@@ -5,3 +5,4 @@ const emailVerifyRoute = '/verify';
 const resetPasswordRoute = '/resetPassword';
 const detailsRoute = '/details';
 const navigationRoute = '/navigation';
+const settingsRoute = '/settings';
