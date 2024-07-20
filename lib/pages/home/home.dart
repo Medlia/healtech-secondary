@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:healtech/controllers/details/details_controller.dart';
 import 'package:healtech/controllers/home/home_controller.dart';
+import 'package:healtech/core/routes/routes.dart';
 import 'package:healtech/models/user_details.dart';
 import 'package:healtech/pages/home/widgets/bmi_chart.dart';
 
@@ -19,6 +20,31 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        actions: [
+          Container(
+            margin: const EdgeInsets.only(
+              top: 20.0,
+              right: 10.0,
+            ),
+            child: CircleAvatar(
+              backgroundColor: const Color(0xffdbdcdc),
+              radius: 28.0,
+              child: GestureDetector(
+                onTap: () {
+                  Get.toNamed(settingsRoute);
+                },
+                child: const Icon(
+                  Icons.settings,
+                  size: 24.0,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Obx(
         () {
           if (controller.userDetails.value == null) {
