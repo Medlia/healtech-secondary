@@ -20,31 +20,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          Container(
-            margin: const EdgeInsets.only(
-              top: 20.0,
-              right: 10.0,
-            ),
-            child: CircleAvatar(
-              backgroundColor: const Color(0xffdbdcdc),
-              radius: 28.0,
-              child: GestureDetector(
-                onTap: () {
-                  Get.toNamed(settingsRoute);
-                },
-                child: const Icon(
-                  Icons.settings,
-                  size: 24.0,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
       body: Obx(
         () {
           if (controller.userDetails.value == null) {
@@ -83,13 +58,29 @@ class _HomeState extends State<Home> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Hi, ${userDetails.fullName}!\nCheck your Activity.",
-                    style: const TextStyle(
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hi, ${userDetails.fullName}!\nCheck your Activity.",
+                        style: const TextStyle(
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed(settingsRoute);
+                        },
+                        child: const Icon(
+                          Icons.settings,
+                          size: 32.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 20.0),
                   const Text(
