@@ -19,6 +19,7 @@ class CustomSearchBar extends StatelessWidget {
         fontSize: 16.0,
         color: Colors.black,
       ),
+      cursorColor: Colors.black,
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,

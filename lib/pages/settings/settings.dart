@@ -64,7 +64,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.edit,
-                      title: "Edit Profile",
+                      title: controller.options[0],
                     ),
                     const SizedBox(height: 8.0),
                     Divider(
@@ -74,7 +74,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.change_circle,
-                      title: "Change Password",
+                      title: controller.options[1],
                     ),
                   ],
                 ),
@@ -100,7 +100,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.alternate_email,
-                      title: "Email Preferences",
+                      title: controller.options[2],
                     ),
                     const SizedBox(height: 8.0),
                     Divider(
@@ -110,7 +110,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.privacy_tip,
-                      title: "Privacy Settings",
+                      title: controller.options[3],
                     ),
                     const SizedBox(height: 8.0),
                     Divider(
@@ -120,7 +120,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.account_box,
-                      title: "Linked Accounts",
+                      title: controller.options[4],
                     ),
                   ],
                 ),
@@ -146,7 +146,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.notifications,
-                      title: "Push Notifications",
+                      title: controller.options[5],
                     ),
                     const SizedBox(height: 8.0),
                     Divider(
@@ -156,7 +156,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.email,
-                      title: "Email Notifications",
+                      title: controller.options[6],
                     ),
                     const SizedBox(height: 8.0),
                     Divider(
@@ -166,7 +166,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.sms,
-                      title: "SMS Notifications",
+                      title: controller.options[7],
                     ),
                   ],
                 ),
@@ -192,7 +192,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.language,
-                      title: "Language Preferences",
+                      title: controller.options[8],
                     ),
                   ],
                 ),
@@ -218,7 +218,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.question_answer,
-                      title: "FAQs",
+                      title: controller.options[9],
                     ),
                     const SizedBox(height: 8.0),
                     Divider(
@@ -228,7 +228,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.contact_support,
-                      title: "Contact Support",
+                      title: controller.options[10],
                     ),
                     const SizedBox(height: 8.0),
                     Divider(
@@ -238,7 +238,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.sync_problem,
-                      title: "Report a Problem",
+                      title: controller.options[11],
                     ),
                   ],
                 ),
@@ -264,7 +264,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.verified,
-                      title: "App Version",
+                      title: controller.options[12],
                     ),
                     const SizedBox(height: 8.0),
                     Divider(
@@ -274,7 +274,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.description,
-                      title: "Terms of Service",
+                      title: controller.options[13],
                     ),
                     const SizedBox(height: 8.0),
                     Divider(
@@ -284,7 +284,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.book,
-                      title: "Licenses",
+                      title: controller.options[14],
                     ),
                   ],
                 ),
@@ -310,7 +310,7 @@ class _SettingsState extends State<Settings> {
                     SettingTile(
                       onTap: () {},
                       icon: Icons.logout,
-                      title: "Logout",
+                      title: controller.options[15],
                     ),
                   ],
                 ),
