@@ -9,9 +9,11 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool hasCompletedGettingStarted =
       prefs.getBool('getting_started_complete') ?? false;
+
   runApp(
     MyApp(
       hasCompletedGettingStarted: hasCompletedGettingStarted,

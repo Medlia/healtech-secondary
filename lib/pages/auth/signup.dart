@@ -18,6 +18,7 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   final controller = Get.put(SignupController());
+  bool isVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +69,18 @@ class _SignupState extends State<Signup> {
                 controller: controller.password,
                 focusNode: controller.passwordFocusNode,
                 keyboardType: TextInputType.text,
-                isPassword: true,
+                isPassword: !isVisible,
                 isFocused: controller.isPasswordFocused,
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isVisible = !isVisible;
+                    });
+                  },
+                  child: isVisible
+                      ? Icon(Icons.visibility)
+                      : Icon(Icons.visibility_off),
+                ),
               ),
               const SizedBox(height: 20.0),
               CustomAuthRow(

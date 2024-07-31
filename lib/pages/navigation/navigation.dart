@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healtech/pages/home/home.dart';
+import 'package:healtech/pages/medicine/medicine.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -13,7 +14,7 @@ class _NavigationState extends State<Navigation> {
   final List<Widget> widgetOptions = <Widget>[
     const Home(),
     const Text("Demo"),
-    const Text("Demo"),
+    const Medicine(),
     const Text("Demo"),
     const Text("Demo"),
   ];
