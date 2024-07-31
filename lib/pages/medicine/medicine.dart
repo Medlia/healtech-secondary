@@ -15,7 +15,19 @@ class _MedicineState extends State<Medicine> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            children: [],
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Medicine",
+                style: TextStyle(
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 20.0),
+
+            ],
           ),
         ),
       ),

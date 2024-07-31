@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healtech/pages/health%20data/health_data.dart';
 import 'package:healtech/pages/home/home.dart';
 import 'package:healtech/pages/medicine/medicine.dart';
 
@@ -13,7 +14,7 @@ class _NavigationState extends State<Navigation> {
   int selectedIndex = 0;
   final List<Widget> widgetOptions = <Widget>[
     const Home(),
-    const Text("Demo"),
+    const HealthData(),
     const Medicine(),
     const Text("Demo"),
     const Text("Demo"),
