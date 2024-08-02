@@ -78,8 +78,8 @@ class _SignupState extends State<Signup> {
                     });
                   },
                   child: isVisible
-                      ? Icon(Icons.visibility)
-                      : Icon(Icons.visibility_off),
+                      ? const Icon(Icons.visibility)
+                      : const Icon(Icons.visibility_off),
                 ),
               ),
               const SizedBox(height: 20.0),

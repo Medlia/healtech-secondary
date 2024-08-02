@@ -100,6 +100,7 @@ class _LoginState extends State<Login> {
                           password: controller.password.text,
                         ),
                       );
+                      await controller.fetchUserDetails();
                       Get.toNamed(navigationRoute);
                     } on UserNotFoundException {
                       Get.showSnackbar(
