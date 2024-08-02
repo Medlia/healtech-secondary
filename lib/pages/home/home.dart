@@ -5,7 +5,6 @@ import 'package:healtech/controllers/details/details_controller.dart';
 import 'package:healtech/controllers/home/home_controller.dart';
 import 'package:healtech/core/routes/routes.dart';
 import 'package:healtech/models/user_details.dart';
-import 'package:healtech/pages/home/widgets/bmi_chart.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -85,31 +84,8 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                   const SizedBox(height: 20.0),
-                  const Text(
-                    "Current BMI and Target BMI",
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 20.0),
-                  Row(
-                    children: [
-                      BMIChart(bmi: currentBmi),
-                      const Spacer(),
-                      BMIChart(bmi: targetBmi),
-                    ],
-                  ),
-                  const SizedBox(height: 20.0),
-                  const Text(
-                    "Number of Steps",
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                    ),
-                  ),
+                  Text((currentBmi / 10000).toStringAsFixed(1)),
+                  Text((targetBmi / 10000).toStringAsFixed(1)),
                 ],
               ),
             ),
