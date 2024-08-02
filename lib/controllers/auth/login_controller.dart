@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +5,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:healtech/core/exceptions/auth_exception.dart';
 import 'package:healtech/core/routes/routes.dart';
 import 'package:healtech/models/auth/user_auth_model.dart';
-import 'package:healtech/models/user_details.dart';
 
 class LoginController extends GetxController {
   late final TextEditingController email;
@@ -42,28 +40,6 @@ class LoginController extends GetxController {
     email.dispose();
     password.dispose();
     super.onClose();
-  }
-
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-
-  Rx<UserDetails?> userDetails = Rx<UserDetails?>(null);
-
-  Future<void> fetchUserDetails() async {
-    try {
-      DocumentSnapshot<Map<String, dynamic>> snapshot = await _firestore
-          .collection('userDetails')
-          .doc(_firebaseAuth.currentUser!.uid)
-          .get();
-
-      if (snapshot.exists) {
-        userDetails.value = UserDetails.fromJson(snapshot.data()!);
-      } else {
-        userDetails.value = null;
-      }
-    } catch (e) {
-      userDetails.value = null;
-    }
   }
 
   Future<bool> currentUser() async {

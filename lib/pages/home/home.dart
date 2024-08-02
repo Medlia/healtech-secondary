@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:healtech/controllers/auth/login_controller.dart';
 import 'package:healtech/controllers/details/details_controller.dart';
 import 'package:healtech/controllers/home/home_controller.dart';
 import 'package:healtech/core/routes/routes.dart';
@@ -16,7 +15,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final controller = Get.put(HomeController());
-  final loginController = Get.put(LoginController());
   final detailController = Get.put(DetailsController());
 
   @override
@@ -24,7 +22,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: Obx(
         () {
-          if (loginController.userDetails.value == null) {
+          if (controller.userDetails.value == null) {
             return Center(
               child: CircularProgressIndicator(
                 color: Colors.black.withOpacity(0.8),
@@ -32,7 +30,7 @@ class _HomeState extends State<Home> {
             );
           }
 
-          UserDetails userDetails = loginController.userDetails.value!;
+          UserDetails userDetails = controller.userDetails.value!;
           double kgWeight;
           double targetKgWeight;
           double mHeight;
