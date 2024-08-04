@@ -6,3 +6,4 @@ const resetPasswordRoute = '/resetPassword';
 const detailsRoute = '/details';
 const navigationRoute = '/navigation';
 const settingsRoute = '/settings';
+const addMedicineRoute = '/addMedicine';

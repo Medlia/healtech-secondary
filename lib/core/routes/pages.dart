@@ -6,6 +6,7 @@ import 'package:healtech/pages/auth/reset_password.dart';
 import 'package:healtech/pages/auth/signup.dart';
 import 'package:healtech/pages/details/details.dart';
 import 'package:healtech/pages/getting%20started/getting_started.dart';
+import 'package:healtech/pages/medicine/add_medicine.dart';
 import 'package:healtech/pages/navigation/navigation.dart';
 import 'package:healtech/pages/settings/settings.dart';
 
@@ -18,4 +19,6 @@ List<GetPage<dynamic>> pages = [
   GetPage(name: detailsRoute, page: () => const Details()),
   GetPage(name: navigationRoute, page: () => const Navigation()),
   GetPage(name: settingsRoute, page: () => const Settings()),
+  GetPage(name: addMedicineRoute, page: () => const AddMedicine()),
+
 ];
