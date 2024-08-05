@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:healtech/controllers/auth/login_controller.dart';
+import 'package:healtech/controllers/medicine/medicine_controller.dart';
 import 'package:healtech/core/exceptions/auth_exception.dart';
 import 'package:healtech/core/routes/routes.dart';
 import 'package:healtech/models/auth/user_auth_model.dart';
@@ -18,6 +19,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final controller = Get.put(LoginController());
+  final medicineController = Get.put(MedicineController());
   bool isVisible = false;
 
   @override

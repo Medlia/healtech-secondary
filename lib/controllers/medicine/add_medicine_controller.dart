@@ -73,7 +73,8 @@ class AddMedicineController extends GetxController {
       await _firestore
           .collection('medicines')
           .doc(_firebaseAuth.currentUser!.uid)
-          .set(medicine.toJson());
+          .collection('entries')
+          .add(medicine.toJson());
       Get.back();
     } catch (_) {
       rethrow;

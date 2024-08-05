@@ -13,7 +13,7 @@ class AddMedicine extends StatefulWidget {
 
 class _AddMedicineState extends State<AddMedicine> {
   final controller = Get.put(AddMedicineController());
-  final startDate = DateFormat('dd/mm/yyyy').format(Get.arguments);
+  final startDate = DateFormat('dd/MM/yyyy').format(Get.arguments);
   bool warning = false;
 
   @override
