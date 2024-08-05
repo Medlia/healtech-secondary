@@ -37,7 +37,6 @@ class EmailVerifyController extends GetxController {
     return _firebase.currentUser!.emailVerified;
   }
 
-// TODO: Correct the logic. The email is sent twice to the user.
   void sendEmailVerification() async {
     _firebase.currentUser!.reload();
     if (_firebase.currentUser!.emailVerified) {

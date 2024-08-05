@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:healtech/pages/health%20data/health_data.dart';
 import 'package:healtech/pages/home/home.dart';
 import 'package:healtech/pages/medicine/medicine.dart';
+import 'package:healtech/pages/tips/tips.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -17,7 +18,7 @@ class _NavigationState extends State<Navigation> {
     const HealthData(),
     const Medicine(),
     const Text("Demo"),
-    const Text("Demo"),
+    const Tips(),
   ];
 
   void onDestinationSelected(int index) {
