@@ -13,19 +13,7 @@ class Medicine extends StatefulWidget {
 
 class _MedicineState extends State<Medicine> {
   final controller = Get.put(MedicineController());
-
-  Future<void> selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: controller.selectedDate.value,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
-    );
-
-    if (picked != null && picked != controller.selectedDate.value) {
-      controller.setSelectedDate(picked);
-    }
-  }
+  final DateTime today = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -100,8 +88,74 @@ class _MedicineState extends State<Medicine> {
                   vertical: 20.0,
                 ),
                 child: Divider(
-                  color: Colors.black.withOpacity(0.4),
+                  color: Colors.black.withOpacity(0.6),
                 ),
+              ),
+              Obx(
+                () {
+                  if (controller.medicines.isEmpty) {
+                    return const Center(child: Text('No medicines found.'));
+                  }
+
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: controller.medicines.length,
+                      itemBuilder: (context, index) {
+                        final medicine = controller.medicines[index];
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(16.0),
+                              decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                  image: AssetImage('assets/med_card.jpeg'),
+                                  fit: BoxFit.contain,
+                                ),
+                                shape: BoxShape.rectangle,
+                                borderRadius: BorderRadius.circular(20.0),
+                                border: Border.all(
+                                  color: Colors.black.withOpacity(0.8),
+                                  width: 1.2,
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    medicine.name,
+                                    style: const TextStyle(
+                                      fontSize: 18.0,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8.0),
+                                  Text(
+                                    "${medicine.dosage} mg ${medicine.frequency}",
+                                    style: TextStyle(
+                                      fontSize: 16.0,
+                                      color: Colors.black.withOpacity(0.8),
+                                    ),
+                                  ),
+                                  Text(
+                                    "${medicine.instruction} at ${medicine.time}",
+                                    style: TextStyle(
+                                      fontSize: 16.0,
+                                      color: Colors.black.withOpacity(0.8),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 10.0),
+                          ],
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
             ],
           ),

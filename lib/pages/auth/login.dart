@@ -103,6 +103,7 @@ class _LoginState extends State<Login> {
                         ),
                       );
                       await controller.fetchUserDetails();
+                      await medicineController.fetchMedicineDetails();
                       Get.toNamed(navigationRoute);
                     } on UserNotFoundException {
                       Get.showSnackbar(
