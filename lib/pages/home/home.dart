@@ -21,6 +21,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Image.asset(
+        'assets/chatbot_bg.png',
+        height: 150.0,
+        width: 150.0,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: Obx(
         () {
           if (loginController.userDetails.value == null) {
