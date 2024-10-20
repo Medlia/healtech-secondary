@@ -16,6 +16,12 @@ class _MedicineState extends State<Medicine> {
   final DateTime today = DateTime.now();
 
   @override
+  void initState() {
+    controller.fetchMedicineDetails();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(

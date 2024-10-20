@@ -5,6 +5,7 @@ import 'package:healtech/controllers/details/details_controller.dart';
 import 'package:healtech/controllers/home/home_controller.dart';
 import 'package:healtech/core/routes/routes.dart';
 import 'package:healtech/models/user_details.dart';
+import 'package:model_viewer_plus/model_viewer_plus.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -19,12 +20,40 @@ class _HomeState extends State<Home> {
   final detailController = Get.put(DetailsController());
 
   @override
+  void initState() {
+    loginController.fetchUserDetails();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Image.asset(
-        'assets/chatbot_bg.png',
-        height: 150.0,
-        width: 150.0,
+      floatingActionButton: Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+          Container(
+            width: 200.0,
+            height: 200.0,
+            child: const ModelViewer(
+              src: "assets/chatbot.glb",
+              ar: true,
+              autoRotate: true,
+              disableZoom: true,
+              cameraControls: false,
+              loading: Loading.eager,
+              withCredentials: true,
+            ),
+          ),
+          Positioned(
+            right: 0,
+            bottom: 0,
+            child: Container(
+              width: 200,
+              height: 200,
+              color: Colors.transparent,
+            ),
+          ),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: Obx(

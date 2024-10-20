@@ -50,6 +50,30 @@ class _EmailVerifyState extends State<EmailVerify> {
                 ),
               ),
               const SizedBox(height: 20.0),
+              FilledButton(
+                onPressed: () async {
+                  controller.refreshUser();
+                  if (controller.emailVerified()) {
+                    Get.toNamed(detailsRoute);
+                  }
+                },
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 60.0),
+                  backgroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                child: const Text(
+                  "Verify",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30.0),
               const Text(
                 "Email",
                 style: TextStyle(
@@ -84,7 +108,7 @@ class _EmailVerifyState extends State<EmailVerify> {
                   ),
                 ),
                 child: const Text(
-                  "Verify",
+                  "Send Email Verification",
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w500,
